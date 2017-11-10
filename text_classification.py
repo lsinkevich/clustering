@@ -22,7 +22,7 @@ def features_collection(data):
 def shuffle_collection(data):
     sh_keys = list(data.keys())
     sh_collection = collections.OrderedDict()
-	random.seed(36)
+    random.seed(36)
     random.shuffle(sh_keys)
 	
     for k in sh_keys:
@@ -33,13 +33,13 @@ def shuffle_collection(data):
 
 def train(data, features, labels):
     train_list = []
-	weight1 = np.zeros(len(features))
+    weight1 = np.zeros(len(features))
     weight2 = np.zeros(len(features))
-	avg_weight1 = []
+    avg_weight1 = []
     avg_weight2 = []
-	increment_variable = 1
+    increment_variable = 1
 	
-	values = collections.OrderedDict()
+    values = collections.OrderedDict()
     values["positive"] = 1
     values["negative"] = -1
 
@@ -51,11 +51,11 @@ def train(data, features, labels):
 
         for d in data:
             count1 = 0
-			for i in b[d]:
-				count1 += weight1[i] * data[d][i]			
+		for i in b[d]:
+			count1 += weight1[i] * data[d][i]			
             count2 = 0
-			for i in b[d]:
-				count1 += weight2[i] * data[d][i]
+		for i in b[d]:
+			count1 += weight2[i] * data[d][i]
 
             predict_label = 1
             if (count1 > count2):
@@ -108,20 +108,20 @@ def test(data, weight1, weight2, values, labels):
     # for computing errors    
     right_count = 0
 	
-	negative_events = 0
-	positive_events = 0
+    negative_events = 0
+    positive_events = 0
     positive_as_negative_events = 0 
     negative_as_positive_events = 0
 
     data = shuffle_collection(data)
     for d in data:
         count1 = 0
-			for i in b[d]:
-				count1 += weight1[i] * data[d][i]
+		for i in b[d]:
+			count1 += weight1[i] * data[d][i]
 
         count2 = 0
-			for i in b[d]:
-				count1 += weight2[i] * data[d][i]
+		for i in b[d]:
+			count1 += weight2[i] * data[d][i]
 
         predict_label = 1
         if (count1 > count2):
@@ -146,31 +146,30 @@ def test(data, weight1, weight2, values, labels):
 
 if __name__ == '__main__':
     features = []
-	feature_count = 0
+    feature_count = 0
 	
-	counts = Counter()	
+    counts = Counter()	
     docs = collections.OrderedDict()
     docs_tmp = collections.OrderedDict()
-	labels = collections.OrderedDict()
-	hash_collection = collections.OrderedDict()
+    labels = collections.OrderedDict()
+    hash_collection = collections.OrderedDict()
 
     for l in ["positive", "negative"]:
         subcatalog = os.path.join("./", l)
         for s in os.listdir(subcatalog): 
             file_path = os.path.join(subcatalog, s)
             data = open(file_path).read().lower()  
-			symbols = data.split(" ")
-			counter = Counter()
-			counter += features_collection(symbols)
+            symbols = data.split(" ")
+            counter = Counter()
+            counter += features_collection(symbols)
 
-			movement = Counter()
-			movement["bias"] = 1
-			counter += movement
+            movement = Counter()
+            movement["bias"] = 1
+            counter += movement
             counts += counter
 			
             docs[s] = counter
             labels[s] = l
-
     
     for (w, c) in counts.most_common(1000000):
         hash_collection[w] = feature_count
