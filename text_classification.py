@@ -221,6 +221,6 @@ if __name__ == '__main__':
     # negative class
     zipped = list(zip(weight1, features))
     zipped.sort(key = lambda t: t[0], reverse=True)
-    print ("Negative class")
+    print ("Negative class:")
     for (weight, word) in zipped[:10]:
         print ("word: {}, weight: {}".format(weight, word))
