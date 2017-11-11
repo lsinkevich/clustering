@@ -97,10 +97,10 @@ def train(data, features, labels):
 
     # plot about the progress
     plt.plot(train_list)
-	plt.title('train progress')
-	plt.ylabel('accuracy')
-	plt.xlabel('iterations')
-	plt.savefig('train_progress.png')
+    plt.title('train progress')
+    plt.ylabel('accuracy')
+    plt.xlabel('iterations')
+    plt.savefig('train_progress.png')
     return avg_w1, avg_w2, values
 
 
