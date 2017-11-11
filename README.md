@@ -1,17 +1,5 @@
 # text_classification_nltk
 
-Get the stopwords list
-```python
-def features_collection(data):
-    counter = Counter()
-    stop_words = stopwords.words("english")
-	
-    for symbol in data:
-        if symbol not in stop_words:
-            counter[symbol] = 1
-			
-    return counter
-```
 Split the dataset : for training and for testing
 ```python
     for d in docs_tmp:
@@ -29,6 +17,19 @@ Split the dataset : for training and for testing
                 train_pos += 1
             else:
                 for_testing[d] = docs_tmp[d]
+```
+
+Get the stopwords list
+```python
+def features_collection(data):
+    counter = Counter()
+    stop_words = stopwords.words("english")
+	
+    for symbol in data:
+        if symbol not in stop_words:
+            counter[symbol] = 1
+			
+    return counter
 ```
 
 Plotting the training progress
