@@ -51,11 +51,11 @@ def train(data, features, labels):
 
         for d in data:
             count1 = 0
-		for i in b[d]:
-			count1 += weight1[i] * data[d][i]			
+	        for i in b[d]:
+		    count1 += weight1[i] * data[d][i]			
             count2 = 0
-		for i in b[d]:
-			count1 += weight2[i] * data[d][i]
+	        for i in b[d]:
+		    count1 += weight2[i] * data[d][i]
 
             predict_label = 1
             if (count1 > count2):
@@ -116,12 +116,12 @@ def test(data, weight1, weight2, values, labels):
     data = shuffle_collection(data)
     for d in data:
         count1 = 0
-		for i in b[d]:
-			count1 += weight1[i] * data[d][i]
+	    for i in b[d]:
+	        count1 += weight1[i] * data[d][i]
 
         count2 = 0
-		for i in b[d]:
-			count1 += weight2[i] * data[d][i]
+	    for i in b[d]:
+	        count1 += weight2[i] * data[d][i]
 
         predict_label = 1
         if (count1 > count2):
